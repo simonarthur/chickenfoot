@@ -608,7 +608,7 @@ ckft.Buffer.prototype.__defineSetter__("text", function(/*String*/ newScript) {
 
   // delete all children of pre
   api.selection.selectAllChildren(pre);
-  api.deleteSelection(0);
+  //api.deleteSelection(0);
 
   // In FF4.01, when the pre node doesn't contain any other nodes,
   // the deleteSelection call seems to be deleting the pre node

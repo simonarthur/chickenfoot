@@ -401,7 +401,7 @@
 
     <macrodef name="closure-compile">
       <attribute name="outputfile" />
-      <attribute name="compilationlevel" default="SIMPLE_OPTIMIZATIONS" />
+      <attribute name="compilationlevel" default="WHITESPACE_ONLY" />
       <attribute name="outputmode" default="${closure.outputmode}" />
       <element name="extraflags" optional="yes" />
       <element name="extrapaths" optional="yes" />
@@ -422,7 +422,7 @@
     <target name="chickenfoot_xpcom_component">
       <mkdir dir="${export.dir}" />
       <closure-compile outputfile="${export.dir}/Chickenfoot.js"
-                       compilationlevel="SIMPLE_OPTIMIZATIONS"
+                       compilationlevel="WHITESPACE_ONLY"
                        outputmode="${closure.outputmode}">
         <extrapaths>
           <!-- TODO(mbolin): Remove unnecessary includes from this list. -->
@@ -444,7 +444,9 @@
           <arg line='-i "${firefox.ui.dir}/Buffer.js"' />
           <arg line='-e "${core.dir}/packager/xpi-tie/"' />
         </extrapaths>
-
+        <extraflags>
+          <arg line='-f "--formatting=PRETTY_PRINT"' />
+        </extraflags>
         <debuginfo><![CDATA[
         Note: This special section was created to work around escaping issues in
         traditional XML comments. It is not a true input to <closure-compile>.
