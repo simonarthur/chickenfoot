@@ -1,5 +1,7 @@
 To build you need:
+
 Ant & Java
+
 Python 2.7.x
 
 Create a firefox.properties as described in firefox-default.properties.

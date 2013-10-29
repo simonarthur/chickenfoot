@@ -42,11 +42,8 @@
     <property name="fennec.build.dir"      value="${basedir}${file.separator}platform${file.separator}fennec${file.separator}build" />
     <property name="fennec.xpi.dir"        value="${fennec.build.dir}${file.separator}xpi" />
     <property name="fennec.export.dir"     value="${fennec.xpi.dir}/export" />
-
-    <property name="xpi.name"    value="${ant.project.name}-${version.value}.xpi" />
-
-    <property name="source.zip.name"    value="${ant.project.name}-source-${version.value}.zip" />
-
+    
+    
     <property name="xpidl.dir" value="${basedir}/xpidl" />
 
     <property name="webbuild.dir" value="${build.dir}/web" />
@@ -305,7 +302,7 @@
     </target>
 
     <target name="java"
-            description="Compiles the Chickenfoot Java code.">
+            description="Compiles the Chickenfoot Java code." depends="init">
         <mkdir dir="${java.bin.dir}" />
         <javac srcdir="${java.src.dir}"
                destdir="${java.bin.dir}"
@@ -318,8 +315,16 @@
             <fileset dir="${java.bin.dir}" />
         </jar>
     </target>
-
-    <target name="closure">
+    
+    <target name="init">
+		<tstamp/>
+		<property name="version.value"    value="${version.number}.${DSTAMP}" />
+		<property name="version.value"    value="${version.number}.${DSTAMP}" />
+		<property name="xpi.name"    value="${ant.project.name}-${version.value}.xpi" />
+		<property name="source.zip.name"    value="${ant.project.name}-source-${version.value}.zip" />				
+    </target>
+		
+    <target name="closure" depends="init">
       <mkdir dir="${build.dir}" />
       <exec executable="python"
             failonerror="true">
